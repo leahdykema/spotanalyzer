@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en_US">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Leah Dykema">
+        <meta name="description" content="A Spotify Listening History Analyzer.">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:image" name="image" content="">
+        <meta property="og:title" content="Spotify Analyzer">
+        <meta property="og:description" content="A Spotify Listening History Analyzer.">
+        <!--<link rel="shortcut icon" type="image/x-icon" href="">-->
+        <!--<link rel="apple-touch-icon" type="image/x-icon" href="">-->
+        <title>Spotify Analyzer</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1>Spotify Listening Analyzer</h1>
+        <p>A Spotify Listening History Analyzer&period; Upload your Spotify &period;json files below&period;</p>
+        <label for="fileInput" id="fileUpload">Upload File&#40;s&#41;</label>
+        <input type="file" id="fileInput" multiple accept=".json">
+        <section>
+            <div id="summary"></div>
+            <div id="yearStats"></div>
+            <div id="topTracks" style="max-height: 400px; overflow-y: auto;"></div>
+        </section>
+        <section id="actions" style="display: none;">
+            <button id="copyButton">Copy Data to Clipboard</button>
+            <button id="pngButton" style="display: none;">Save</button>
+            <button id="refreshButton">Refresh</button>
+        </section>
+        <script src="parser.js"></script>
+        <script src="stats.js"></script>
+        <script src="charts.js"></script>
+        <script src="app.js"></script>
+        <script>
+            document.getElementById("refreshButton").addEventListener("click", () => {
+                location.reload();
+            });
+            document.getElementById("copyButton").addEventListener("click", async () => {
+                const shareText = document.getElementById("results").innerText;
+                if (navigator.share) {
+                    await navigator.share({
+                        title: "My Spotify Stats",
+                        text: shareText
+                    });
+                } else {
+                    await navigator.clipboard.writeText(shareText);
+                    alert("Stats copied to clipboard!");
+                }
+            });
+        </script>
+    </body>
+</html>
