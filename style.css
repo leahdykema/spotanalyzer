@@ -14,6 +14,10 @@ h1 {
     text-align: center;
 }
 
+a {
+    transition: all 100ms ease-in-out;
+}
+
 #cards {
     display: flex;
     flex-wrap: wrap;
@@ -76,10 +80,19 @@ section#actions {
         color: #000;
     }
 
+    a {
+        color: #609eff;
+    }
+
     #fileUpload,
     #actions button {
         background-color: #ddd;
         color: #000;
+    }
+
+    a:hover,
+    a:focus {
+        color: #4971ff;
     }
 
     #fileUpload:focus,
@@ -98,10 +111,19 @@ section#actions {
         color: #eee;
     }
 
+    a {
+        color: #609eff
+    }
+
     #fileUpload,
     #actions button {
         background-color: #222;
         color: #fff;
+    }
+
+    a:hover,
+    a:focus {
+        color: #4971ff;
     }
 
     #fileUpload:focus,
